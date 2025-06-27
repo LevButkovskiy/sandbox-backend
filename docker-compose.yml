@@ -6,11 +6,13 @@ services:
         labels:
           - 'traefik.enable=true'
           - 'traefik.docker.network=web'
-          - 'traefik.http.routers.sandbox.rule=Host(`api.sandbox.bleit.ru`)'
-          - 'traefik.http.routers.sandbox.entrypoints=websecure'
-          - 'traefik.http.routers.sandbox.tls=true'
-          - 'traefik.http.routers.sandbox.tls.certresolver=myresolver'
-          - 'traefik.http.services.sandbox.loadbalancer.server.port=3000'
+          - 'traefik.http.routers.sandbox_back.rule=Host(`api.sandbox.bleit.ru`)'
+          - 'traefik.http.routers.sandbox_back.entrypoints=websecure'
+          - 'traefik.http.routers.sandbox_back.tls=true'
+          - 'traefik.http.routers.sandbox_back.tls.certresolver=myresolver'
+          - 'traefik.http.services.sandbox_back.loadbalancer.server.port=3000'
+        networks:
+            - web
 
 
 networks:
