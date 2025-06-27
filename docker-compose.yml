@@ -1,0 +1,18 @@
+services:
+    backend:
+        build:
+            context: ./
+        restart: always
+        labels:
+          - 'traefik.enable=true'
+          - 'traefik.docker.network=web'
+          - 'traefik.http.routers.sandbox.rule=Host(`api.sandbox.bleit.ru`)'
+          - 'traefik.http.routers.sandbox.entrypoints=websecure'
+          - 'traefik.http.routers.sandbox.tls=true'
+          - 'traefik.http.routers.sandbox.tls.certresolver=myresolver'
+          - 'traefik.http.services.sandbox.loadbalancer.server.port=3000'
+
+
+networks:
+    web:
+        external: true
