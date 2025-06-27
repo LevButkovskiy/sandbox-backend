@@ -26,7 +26,9 @@ webpush.setVapidDetails(
 // 🗃 Храним подписки (в реальности — база данных)
 const subscriptions: webpush.PushSubscription[] = [];
 
-app.get("/", (req, res) => res.send("Hello world"))
+app.get("/", (req, res) => {
+    res.send("Hello world")
+})
 
 app.post('/subscribe', (req, res) => {
   const subscription: webpush.PushSubscription = req.body;
