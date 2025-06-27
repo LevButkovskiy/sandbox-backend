@@ -46,8 +46,13 @@ app.post('/send-notification', async (req, res) => {
   });
 
   try {
-    await Promise.all(subscriptions.map((sub) =>
+    await Promise.all(subscriptions.map((sub) => {
+        try {
       webpush.sendNotification(sub, payload)
+      } catch (error) {
+        console.error(error)
+      }
+    }
     ));
 
     res.status(200).json({ success: true });
